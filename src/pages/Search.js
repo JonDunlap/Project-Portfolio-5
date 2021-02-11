@@ -1,7 +1,9 @@
 const Search = () => {
   return (
-    <div>
-      <h2>Search</h2>
+    <div className='container'>
+      <div className='search-container'>
+        <h2>Search</h2>
+      </div>
     </div>
   );
 };

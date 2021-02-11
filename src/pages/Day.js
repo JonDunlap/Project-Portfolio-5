@@ -1,6 +1,6 @@
 const Day = () => {
   return (
-    <div>
+    <div className='container'>
       <h1>Day</h1>
     </div>
   );
