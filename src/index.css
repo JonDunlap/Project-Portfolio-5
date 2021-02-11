@@ -19,17 +19,24 @@ code {
   font-family: 'Roboto';
 }
 
-.App {
+/* .App {
   background-color: green;
-  padding: 2rem;
-}
+  padding: 1rem;
+} */
 
 .container {
-  background-color: red;
+  max-width: 90vw;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 0.1rem solid grey;
+  border-radius: 20px;
+  margin: 2rem auto;
   padding: 1rem;
 }
 
-.search-container {
-  border: 1px solid grey;
-  border-radius: 20px;
-}
+/* .search-container {
+  padding: 1rem;
+} */
