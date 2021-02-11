@@ -1,8 +1,10 @@
+import Container from '@material-ui/core/Container';
+
 const Day = () => {
   return (
-    <div className='container'>
+    <Container>
       <h1>Day</h1>
-    </div>
+    </Container>
   );
 };
 

@@ -1,8 +1,11 @@
+import Container from '@material-ui/core/Container';
+import Day from '../pages/Day';
+
 const Main = () => {
   return (
-    <div className='container'>
+    <Container>
       <h1>Main</h1>
-    </div>
+    </Container>
   );
 };
 
