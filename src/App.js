@@ -1,36 +1,53 @@
 // import { BrowserRouter as Router } from 'react-router-dom';
 // import Routes from './components/Routes';
 import { useState } from 'react';
-import Container from '@material-ui/core/Container';
 import Main from './pages/Main';
 import Search from './pages/Search';
 
 function App() {
   // State variables
-  const [location, setLocation] = useState('');
+  // const [location, setLocation] = useState('');
   const [weather, setWeather] = useState();
 
+  // State variables used in search component
+  const [region, setRegion] = useState('');
+  const [state, setState] = useState('');
+  const [city, setCity] = useState('');
+
   // Dynamic, reusable url for fetching weather, uses a variable saved in the .env.local file
-  const URL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_API_KEY}`;
+  const URL = `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${region}&appid=${process.env.REACT_APP_API_KEY}`;
 
-  // Update the location state on user input
-  const setLocName = (e) => {
-    setLocation(e.target.value);
+  // onChange functions to set state
+  const handleRegionChange = (e) => {
+    setRegion(e.target.value);
+  };
+  const handleStateChange = (e) => {
+    setState(e.target.value);
+  };
+  const handleCityChange = (e) => {
+    setCity(e.target.value);
   };
 
-  // Set the weather state after fetching weather
-  const setWeatherData = (weatherData) => {
-    setWeather({ ...weatherData });
-  };
+  // TODO - build location object, maybe?
 
   // Handle the form submission
   const submitForm = (e) => {
-    // Prevent default submit
     e.preventDefault();
+
+    // TODO - debug
+    console.log('URL', URL);
     // Call fetchWeather function
     fetchWeather();
-    // Reset the state of the location to clear the form
-    setLocation('');
+
+    // Clear the form fields
+    clearSearchForm();
+  };
+
+  // Clear the search form fields by clearing the state variables
+  const clearSearchForm = () => {
+    setRegion('');
+    setState('');
+    setCity('');
   };
 
   // Async function to get weather data for the users input location
@@ -52,6 +69,13 @@ function App() {
       .catch((error) => console.log(`Error: ${error}`));
   };
 
+  // Set the weather state after fetching weather
+  const setWeatherData = (weatherData) => {
+    setWeather({ ...weatherData });
+    // TODO - debug
+    console.log('weatherData', weatherData);
+  };
+
   return (
     <div className='container'>
       {/* TODO - use routes later? */}
@@ -64,9 +88,13 @@ function App() {
         <Main weather={weather} />
       ) : (
         <Search
+          region={region}
+          state={state}
+          city={city}
           submitForm={submitForm}
-          setLocName={setLocName}
-          location={location}
+          handleRegionChange={handleRegionChange}
+          handleStateChange={handleStateChange}
+          handleCityChange={handleCityChange}
         />
       )}
     </div>
