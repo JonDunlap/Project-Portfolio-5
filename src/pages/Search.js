@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
@@ -19,50 +18,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // Search component
-const Search = ({ submitForm, setLocName }) => {
+const Search = ({
+  region,
+  state,
+  city,
+  submitForm,
+  handleRegionChange,
+  handleStateChange,
+  handleCityChange,
+}) => {
   // Styling
   const classes = useStyles();
-  // State variables
-  const [region, setRegion] = useState('');
-  const [state, setState] = useState('');
-  const [city, setCity] = useState('');
   // Variables used to enable/disable inputs/buttons
-  let stateDisabled = !region;
-  let cityDisabled = !state;
-  let btnDisabled = !city;
-
-  // onChange functions to set state
-  const handleRegionChange = (e) => {
-    setRegion(e.target.value);
-  };
-  const handleStateChange = (e) => {
-    setState(e.target.value);
-  };
-  const handleCityChange = (e) => {
-    setCity(e.target.value);
-  };
-
-  //
-  const handleSubmit = (e) => {
-    // Prevent default submit
-    e.preventDefault();
-
-    // Create location object
-    // TODO - temp location
-    setLocName(city);
-
-    // Submit the form to the main app
-    submitForm();
-
-    // Clear the form fields
-    setRegion('');
-    setState('');
-    setCity('');
-  };
+  let stateDisabled = !region,
+    cityDisabled = !state,
+    btnDisabled = !city;
 
   return (
     <Paper variant='outlined' elevation={3} className='search-container'>
-      <form>
+      <form onSubmit={submitForm}>
         <Grid
           container
           spacing={2}
@@ -126,7 +100,7 @@ const Search = ({ submitForm, setLocName }) => {
               className={classes.formControl}
               id='search-btn'
               variant='contained'
-              onClick={handleSubmit}
+              type='submit'
             >
               Search
             </Button>
