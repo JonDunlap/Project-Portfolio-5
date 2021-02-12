@@ -35,7 +35,7 @@ const Search = ({
     btnDisabled = !city;
 
   return (
-    <Paper variant='outlined' elevation={3} className='search-container'>
+    <Paper elevation={3}>
       <form onSubmit={submitForm}>
         <Grid
           container
