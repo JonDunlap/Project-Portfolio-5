@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
 
+// Styles used for customizing the material-ui components
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(2),
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// Search component
+// Search component with props
 const Search = ({
   region,
   state,
@@ -102,15 +103,14 @@ const Search = ({
                 autoWidth
                 className={classes.selectEmpty}
               >
-                {/* TODO - map through the cities */}
-                {console.log('cityList', cityList)}
-                {/* {cityList
+                {/* Map through the cities */}
+                {cityList
                   ? cityList.map((city) => (
                       <MenuItem key={city.id} value={city.name}>
                         {city.name}
                       </MenuItem>
                     ))
-                  : ''} */}
+                  : ''}
               </Select>
             </FormControl>
           </Grid>
