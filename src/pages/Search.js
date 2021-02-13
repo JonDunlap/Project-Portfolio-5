@@ -26,12 +26,15 @@ const Search = ({
   handleRegionChange,
   handleStateChange,
   handleCityChange,
+  regionList,
+  stateList,
+  cityList,
 }) => {
-  // Styling
+  // Styling for material elements
   const classes = useStyles();
   // Variables used to enable/disable inputs/buttons
-  let stateDisabled = !region,
-    cityDisabled = !state,
+  let stateDisabled = !stateList,
+    cityDisabled = !cityList,
     btnDisabled = !city;
 
   return (
@@ -55,8 +58,12 @@ const Search = ({
                 autoWidth
                 className={classes.selectEmpty}
               >
-                {/* TODO - map through the regions? */}
-                <MenuItem value={'US'}>United States of America</MenuItem>
+                {/* Map through the regions & show them as select inputs */}
+                {regionList.map((region) => (
+                  <MenuItem key={region.id} value={region.iso2}>
+                    {region.name}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Grid>
@@ -72,8 +79,14 @@ const Search = ({
                 autoWidth
                 className={classes.selectEmpty}
               >
-                {/* TODO - map through the states */}
-                <MenuItem value={'NV'}>Nevada</MenuItem>
+                {/* Map through the states */}
+                {stateList
+                  ? stateList.map((state) => (
+                      <MenuItem key={state.id} value={state.iso2}>
+                        {state.name}
+                      </MenuItem>
+                    ))
+                  : ''}
               </Select>
             </FormControl>
           </Grid>
@@ -90,7 +103,14 @@ const Search = ({
                 className={classes.selectEmpty}
               >
                 {/* TODO - map through the cities */}
-                <MenuItem value={'las vegas'}>Las Vegas</MenuItem>
+                {console.log('cityList', cityList)}
+                {/* {cityList
+                  ? cityList.map((city) => (
+                      <MenuItem key={city.id} value={city.name}>
+                        {city.name}
+                      </MenuItem>
+                    ))
+                  : ''} */}
               </Select>
             </FormControl>
           </Grid>
