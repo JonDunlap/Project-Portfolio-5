@@ -136,7 +136,7 @@ function App() {
   // Get latitude & longitude from address using google maps geocode API
   const getLatLng = async () => {
     await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${city},+${state},+${region}&key=AIzaSyCNxtF6dicdSaaaViWjUiv3uISmf9cnbf4`
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${city},+${state},+${region}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`
     )
       .then((response) => response.json())
       .then((data) => data.results[0].geometry.location)
