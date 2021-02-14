@@ -15,10 +15,9 @@ function App() {
     redirect: 'follow',
   };
 
-  // State variables
-  // const [location, setLocation] = useState('');
+  // State variables used in the App component
+  const [location, setLocation] = useState('');
   const [weather, setWeather] = useState();
-
   // State variables used in search component
   const [region, setRegion] = useState('');
   const [state, setState] = useState('');
@@ -73,6 +72,34 @@ function App() {
       fetchCity();
     }
   }, [state]);
+  // Fetch the weather data after the lat lng has been retrieved from the Google API
+  useEffect(() => {
+    // Async function to get weather data for the users input location
+    const fetchWeather = async () => {
+      await fetch(
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${location.lat}&lon=${location.lng}&exclude={minutely}&appid=${process.env.REACT_APP_API_KEY}`
+      )
+        .then((response) => response.json())
+        // TODO - destructure the needed information into an object if needed
+        // Destructure the return data into an object to be used in the application
+        // .then((info) => ({
+        //   name: `${info.name}`,
+        //   temp: `${info.main.temp}`,
+        //   feel: `${info.main.feels_like}`,
+        //   min: `${info.main.temp_min}`,
+        //   max: `${info.main.temp_max}`,
+        //   pressure: `${info.main.pressure}`,
+        // }))
+        // Call the function to set the weather state
+        .then((weatherData) => setWeather({ ...weatherData }))
+        // Handle any errors
+        .catch((error) => console.log(`Error: ${error}`));
+    };
+
+    if (location) {
+      fetchWeather();
+    }
+  }, [location]);
 
   // Functions to set the list items
   const setRegionListData = (regionData) => {
@@ -95,22 +122,26 @@ function App() {
     setCity(e.target.value);
   };
 
-  // Dynamic, reusable url for fetching weather, uses a variable saved in the .env.local file
-  // const URL = `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${region}&appid=${process.env.REACT_APP_API_KEY}`;
-  const URL = `https://api.openweathermap.org/data/2.5/forecast?q=${city},${state},${region}&appid=${process.env.REACT_APP_API_KEY}`;
-
-  // TODO - build location object, maybe?
-
   // Handle the form submission
   const submitForm = (e) => {
     e.preventDefault();
 
-    // TODO - fetch location from google API, move fetch to that function
-    // Call fetchWeather function
-    fetchWeather();
+    // fetch lat lng location from google API
+    getLatLng();
 
     // Clear the form fields
     clearSearchForm();
+  };
+
+  // Get latitude & longitude from address using google maps geocode API
+  const getLatLng = async () => {
+    await fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${city},+${state},+${region}&key=AIzaSyCNxtF6dicdSaaaViWjUiv3uISmf9cnbf4`
+    )
+      .then((response) => response.json())
+      .then((data) => data.results[0].geometry.location)
+      .then((latLng) => setLocation({ ...latLng }))
+      .catch((error) => console.error(error));
   };
 
   // Clear the search form fields by clearing the state variables
@@ -118,32 +149,6 @@ function App() {
     setRegion('');
     setState('');
     setCity('');
-  };
-
-  // Async function to get weather data for the users input location
-  const fetchWeather = async () => {
-    await fetch(URL)
-      .then((response) => response.json())
-      // Destructure the return data into an object to be used in the application
-      // .then((info) => ({
-      //   name: `${info.name}`,
-      //   temp: `${info.main.temp}`,
-      //   feel: `${info.main.feels_like}`,
-      //   min: `${info.main.temp_min}`,
-      //   max: `${info.main.temp_max}`,
-      //   pressure: `${info.main.pressure}`,
-      // }))
-      // Call the function to set the weather state
-      .then((weatherData) => setWeatherData(weatherData))
-      // Handle any errors
-      .catch((error) => console.log(`Error: ${error}`));
-  };
-
-  // Set the weather state after fetching weather
-  const setWeatherData = (weatherData) => {
-    setWeather({ ...weatherData });
-    // TODO - debug
-    console.log('weatherData', weatherData);
   };
 
   return (
