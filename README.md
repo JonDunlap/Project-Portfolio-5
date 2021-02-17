@@ -1,6 +1,27 @@
 # Project & Portfolio 5: Weather Application
 
-[TODO - Add content here]
+## APIs Used
+
+### [Country State City API](https://countrystatecity.in)
+  * On initial load of the website, pull in the country data from this API.
+  * Once a user selects the country a list of states are retrieved from the API using the country as a parameter.
+  * After the state is selected by the user a list of cities are retrieved from the API using the previously input parameters.
+  * These selections are then uploaded to the Google Maps geocoding API to retrieve a latitude and longitude for the selected location.
+
+### [Google Maps geocoding API](https://developers.google.com/maps/documentation/geocoding/overview)
+  * Retrieves the latitude and longitude based on the provided city, state, and country that the user inputs.
+
+### [OpenWeather one call API](https://openweathermap.org/api/one-call-api)
+  * Takes the latitude and longitude and provides weather data for the selected location.
+  * Provides the following information:
+    * Current weather
+    * Minute forecast for 1 hour (not used)
+    * Hourly forecast for the next 48 hours
+    * Daily forecast for the next 7 days
+    * National weather alerts (if applicable)
+    * Historical weather data for the previous 5 days (not used)
+  * Units of measurement are returned in standard units which will make conversion between celsius/fahrenheit and mph/kmh easier to accomplish.
+
 
 ## Available Scripts
 
