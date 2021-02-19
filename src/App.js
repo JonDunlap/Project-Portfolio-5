@@ -34,7 +34,7 @@ function App() {
         requestOptions
       )
         .then((response) => response.json())
-        .then((result) => setRegionListData(result))
+        .then((result) => setRegionList(result))
         .catch((error) => console.log('error', error));
     };
 
@@ -48,7 +48,7 @@ function App() {
         requestOptions
       )
         .then((response) => response.json())
-        .then((result) => setStateListData(result))
+        .then((result) => setStateList(result))
         .catch((error) => console.log('error', error));
     };
 
@@ -64,7 +64,7 @@ function App() {
         requestOptions
       )
         .then((response) => response.json())
-        .then((result) => setCityListData(result))
+        .then((result) => setCityList(result))
         .catch((error) => console.log('error', error));
     };
 
@@ -77,7 +77,7 @@ function App() {
     // Async function to get weather data for the users input location
     const fetchWeather = async () => {
       await fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${location.lat}&lon=${location.lng}&exclude={minutely}&appid=${process.env.REACT_APP_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${location.lat}&lon=${location.lng}&exclude=minutely&appid=${process.env.REACT_APP_API_KEY}`
       )
         .then((response) => response.json())
         // TODO - destructure the needed information into an object if needed
@@ -101,16 +101,6 @@ function App() {
     }
   }, [location]);
 
-  // Functions to set the list items
-  const setRegionListData = (regionData) => {
-    setRegionList(regionData);
-  };
-  const setStateListData = (stateData) => {
-    setStateList(stateData);
-  };
-  const setCityListData = (cityData) => {
-    setCityList(cityData);
-  };
   // onChange functions to set state
   const handleRegionChange = (e) => {
     setRegion(e.target.value);
