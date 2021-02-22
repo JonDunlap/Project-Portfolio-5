@@ -17,16 +17,16 @@ const requestOptions = {
 
 function App() {
   //* State variables used in the App component
-  // const [location, setLocation] = useState();
-  const [location, setLocation] = useState({
-    lat: '36.1699412',
-    lng: '-115.1398296',
-  }); //! DEBUG - manually set location to skip search component
-  // const [cityState, setCityState] = useState();
-  const [cityState, setCityState] = useState({
-    city: 'Las Vegas',
-    state: 'NV',
-  }); //! DEBUG - manually set city & state to skip search component
+  const [location, setLocation] = useState();
+  // const [location, setLocation] = useState({
+  //   lat: '36.1699412',
+  //   lng: '-115.1398296',
+  // }); //! DEBUG - manually set location to skip search component
+  const [cityState, setCityState] = useState();
+  // const [cityState, setCityState] = useState({
+  //   city: 'Las Vegas',
+  //   state: 'NV',
+  // }); //! DEBUG - manually set city & state to skip search component
   const [weather, setWeather] = useState();
 
   // TODO - move to search component
