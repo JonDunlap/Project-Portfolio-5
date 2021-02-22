@@ -193,7 +193,6 @@ const Main = ({
         </Grid>
       </Grid>
 
-      {console.log('current', current)}
       <Grid container spacing={2}>
         {/* //* Map through the daily weather forecast and create 5 day components for the coming 5 days */}
         {daily.slice(0, 5).map((day) => (
