@@ -195,7 +195,7 @@ const Main = ({
 
       <Grid container spacing={2}>
         {/* //* Map through the daily weather forecast and create 5 day components for the coming 5 days */}
-        {daily.slice(0, 5).map((day) => (
+        {daily.slice(1, 6).map((day) => (
           <Day
             key={day.dt}
             day={day}
