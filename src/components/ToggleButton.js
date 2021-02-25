@@ -9,16 +9,14 @@ const ToggleButton = ({ convertToFahrenheit, setConvertToFahrenheit }) => {
 
   //* Component responsible for toggling the currently displayed temperature
   return (
-    <div>
-      <Grid component='label' item xs container direction='row' spacing={2}>
-        {/* //* Temperature toggle buttons */}
-        <Grid item>C</Grid>
-        <Grid item>
-          <Switch checked={convertToFahrenheit} onChange={toggleConversion} />
-        </Grid>
-        <Grid item>F</Grid>
+    <Grid component='label' item xs container direction='row' spacing={2}>
+      {/* //* Temperature toggle buttons */}
+      <Grid item>C</Grid>
+      <Grid item>
+        <Switch checked={convertToFahrenheit} onChange={toggleConversion} />
       </Grid>
-    </div>
+      <Grid item>F</Grid>
+    </Grid>
   );
 };
 
