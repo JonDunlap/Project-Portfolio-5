@@ -1,7 +1,7 @@
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Day from '../pages/Day';
-import Switch from '@material-ui/core/Switch';
+import ToggleButton from '../components/ToggleButton';
 import { useState } from 'react';
 
 const Main = ({
@@ -18,11 +18,6 @@ const Main = ({
   const localRegion = 'en-US'; // can be used later to change region to users current region
 
   //* Functions
-  // TODO - link to a toggle button
-  // Toggle the convert variable by switching the current state of that variable
-  const toggleConversion = () => {
-    setConvertToFahrenheit(!convertToFahrenheit);
-  };
   // Function that will convert the kelvin temperature from the API to either F/C depending on the toggle switch
   const convertTemp = (temp) => {
     return convertToFahrenheit
@@ -103,20 +98,14 @@ const Main = ({
           </Grid>
         </Grid>
         <Grid item xs={12} sm container>
-          {/* //? Move this into a component */}
-          <Grid component='label' item xs container direction='row' spacing={2}>
-            {/* //* Temperature toggle buttons */}
-            <Grid item>C</Grid>
-            <Grid item>
-              <Switch
-                checked={convertToFahrenheit}
-                onChange={toggleConversion}
-              />
-            </Grid>
-            <Grid item>F</Grid>
-          </Grid>
+          {/* //* Toggle Button that handles the temperature change */}
+          <ToggleButton
+            convertToFahrenheit={convertToFahrenheit}
+            setConvertToFahrenheit={setConvertToFahrenheit}
+          />
         </Grid>
       </Grid>
+
       <Grid container spacing={2}>
         <Grid item xs={12} sm container>
           <Grid item xs container direction='column' spacing={2}>
@@ -155,7 +144,6 @@ const Main = ({
             <Grid item xs>
               {/* //* Weather description */}
               <Typography variant='subtitle1'>Conditions</Typography>
-
               <Typography variant='subtitle2'>
                 {current.weather[0].description}
               </Typography>
@@ -201,10 +189,11 @@ const Main = ({
             day={day}
             city={city}
             state={state}
-            toggleConversion={toggleConversion}
+            timezone={timezone}
+            convertToFahrenheit={convertToFahrenheit}
+            setConvertToFahrenheit={setConvertToFahrenheit}
             convertTemp={convertTemp}
             convertSpeed={convertSpeed}
-            localizeDate={localizeDate}
             localizeShortDate={localizeShortDate}
             localizeTime={localizeTime}
             imageURL={imageURL}
