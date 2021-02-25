@@ -2,6 +2,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import IconButton from '@material-ui/core/IconButton';
+import CancelIcon from '@material-ui/icons/Cancel';
 import Modal from '@material-ui/core/Modal';
 import ToggleButton from '../components/ToggleButton';
 import { makeStyles } from '@material-ui/core/styles';
@@ -136,10 +138,10 @@ const Day = ({
         <Paper>
           {/* // TODO - provide aria labels and descriptions */}
           <Grid container spacing={2}>
+            {/* //* Weather icon */}
             <Grid item xs={12} sm container>
               <Grid item xs container direction='column' spacing={2}>
                 <Grid item xs>
-                  {/* //* Weather icon */}
                   <img
                     // className={classes.img}
                     alt='weather icon'
@@ -148,6 +150,7 @@ const Day = ({
                 </Grid>
               </Grid>
             </Grid>
+            {/* //* Header */}
             <Grid item xs={12} sm container>
               <Grid item xs container direction='column' spacing={2}>
                 <Grid item xs>
@@ -157,12 +160,26 @@ const Day = ({
                 </Grid>
               </Grid>
             </Grid>
+            {/* //* Toggle Button that handles the temperature change */}
             <Grid item xs={12} sm container>
-              {/* //* Toggle Button that handles the temperature change */}
               <ToggleButton
                 convertToFahrenheit={convertToFahrenheit}
                 setConvertToFahrenheit={setConvertToFahrenheit}
               />
+            </Grid>
+            {/* //* Close button */}
+            <Grid item xs={12} sm container>
+              <Grid item xs container direction='column' spacing={2}>
+                <Grid item xs>
+                  <IconButton
+                    aria-label='close modal'
+                    color='primary'
+                    onClick={handleClose}
+                  >
+                    <CancelIcon fontSize='large' />
+                  </IconButton>
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
 
