@@ -13,7 +13,11 @@ const ToggleButton = ({ convertToFahrenheit, setConvertToFahrenheit }) => {
       {/* //* Temperature toggle buttons */}
       <Grid item>C</Grid>
       <Grid item>
-        <Switch checked={convertToFahrenheit} onChange={toggleConversion} />
+        <Switch
+          color='primary'
+          checked={convertToFahrenheit}
+          onChange={toggleConversion}
+        />
       </Grid>
       <Grid item>F</Grid>
     </Grid>
