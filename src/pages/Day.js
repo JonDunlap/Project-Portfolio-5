@@ -9,14 +9,22 @@ import ToggleButton from '../components/ToggleButton';
 import { makeStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
 
+//* Styles used for material ui elements
 const useStyles = makeStyles((theme) => ({
   paper: {
     width: 250,
-    margin: 20,
+    margin: 10,
     padding: theme.spacing(2),
+  },
+  modal: {
+    margin: 'auto',
+    marginTop: '2vh',
+    width: '90vw',
+    padding: '4rem',
   },
 }));
 
+//* Day component props
 const Day = ({
   day,
   city,
@@ -38,13 +46,15 @@ const Day = ({
   const classes = useStyles();
 
   //* Functions
+  // function used to open the modal
   const handleOpen = () => {
     setOpen(true);
   };
+  // Function used to close the modal
   const handleClose = () => {
     setOpen(false);
   };
-  // Take a datetime object and convert it to a localized date string
+  // Take a datetime object and convert it to a localized date string for use in the modal view
   const modalDate = (date) => {
     return new Date(date * 1000).toLocaleDateString('en-US', {
       weekday: 'long',
@@ -55,6 +65,7 @@ const Day = ({
     });
   };
 
+  //* Day component return
   return (
     <div>
       {/* //* Wrap the day view in a button that will open up the modal */}
@@ -135,7 +146,7 @@ const Day = ({
         aria-labelledby='modal-title'
         aria-describedby='modal-description'
       >
-        <Paper>
+        <Paper className={classes.modal}>
           {/* // TODO - provide aria labels and descriptions */}
           <Grid container spacing={2}>
             {/* //* Weather icon */}
