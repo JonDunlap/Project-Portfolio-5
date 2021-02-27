@@ -71,71 +71,51 @@ const Day = ({
       {/* //* Wrap the day view in a button that will open up the modal */}
       <ButtonBase focusRipple onClick={handleOpen}>
         <Paper className={classes.paper}>
-          {/* TODO - move everything into a button to expand the view */}
           <Grid container spacing={2} direction='column'>
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction='column' spacing={2}>
-                <Grid item xs>
-                  {/* Weather icon */}
-                  <img
-                    // className={classes.img}
-                    alt='weather icon'
-                    src={imageURL(day.weather[0].icon, 2)}
-                  />
-                </Grid>
-                <Grid item xs>
-                  {/* TODO - Change to day of the week */}
-                  <Typography variant='h4'>
-                    {localizeShortDate(day.dt)}
-                  </Typography>
-                </Grid>
+            {/* //* Weather icon */}
+            <Grid item xs>
+              <img alt='weather icon' src={imageURL(day.weather[0].icon, 2)} />
+            </Grid>
+            {/* //* Day of the week */}
+            <Grid item xs>
+              <Typography variant='h4'>{localizeShortDate(day.dt)}</Typography>
+            </Grid>
+
+            <Grid container direction='row' spacing={2}>
+              {/* //* Highs */}
+              <Grid item xs>
+                <Typography variant='subtitle1'>High</Typography>
+                <Typography variant='subtitle2'>
+                  {convertTemp(day.temp.max)}
+                </Typography>
+              </Grid>
+              {/* //* Lows */}
+              <Grid item xs>
+                <Typography variant='subtitle1'>Low</Typography>
+                <Typography variant='subtitle2'>
+                  {convertTemp(day.temp.min)}
+                </Typography>
               </Grid>
             </Grid>
 
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction='row' spacing={2}>
-                <Grid item xs>
-                  {/* Highs */}
-                  <Typography variant='subtitle1'>High</Typography>
-                  <Typography variant='subtitle2'>
-                    {convertTemp(day.temp.max)}
-                  </Typography>
-                </Grid>
-                <Grid item xs>
-                  {/* Lows */}
-                  <Typography variant='subtitle1'>Low</Typography>
-                  <Typography variant='subtitle2'>
-                    {convertTemp(day.temp.min)}
-                  </Typography>
-                </Grid>
+            <Grid container direction='column' spacing={2}>
+              {/* //* Weather description */}
+              <Grid item xs>
+                <Typography variant='subtitle1'>Conditions</Typography>
+                <Typography variant='subtitle2'>
+                  {day.weather[0].description}
+                </Typography>
               </Grid>
-            </Grid>
-
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction='column' spacing={2}>
-                <Grid item xs>
-                  {/* Weather description */}
-                  <Typography variant='subtitle1'>Conditions</Typography>
-                  <Typography variant='subtitle2'>
-                    {day.weather[0].description}
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Grid>
-
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction='column' spacing={2}>
-                <Grid item xs>
-                  {/* Winds */}
-                  <Typography variant='subtitle1'>Winds</Typography>
-                  <Typography variant='subtitle2'>{`${
-                    day.wind_deg
-                  }° at ${convertSpeed(day.wind_speed)}`}</Typography>
-                </Grid>
+              {/* //* Winds */}
+              <Grid item xs>
+                <Typography variant='subtitle1'>Winds</Typography>
+                <Typography variant='subtitle2'>{`${
+                  day.wind_deg
+                }° at ${convertSpeed(day.wind_speed)}`}</Typography>
               </Grid>
             </Grid>
           </Grid>
-        </Paper>{' '}
+        </Paper>
       </ButtonBase>
 
       {/* //* Expanded modal view of selected day */}
@@ -150,47 +130,32 @@ const Day = ({
           {/* // TODO - provide aria labels and descriptions */}
           <Grid container spacing={2}>
             {/* //* Weather icon */}
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction='column' spacing={2}>
-                <Grid item xs>
-                  <img
-                    // className={classes.img}
-                    alt='weather icon'
-                    src={imageURL(day.weather[0].icon, 4)}
-                  />
-                </Grid>
-              </Grid>
+            <Grid item sm={12} md={2}>
+              {/* // TODO - pass the image in as a variable to prevent loading on each interaction */}
+              <img alt='weather icon' src={imageURL(day.weather[0].icon, 4)} />
             </Grid>
             {/* //* Header */}
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction='column' spacing={2}>
-                <Grid item xs>
-                  {/* //* City, state, and day date & time */}
-                  <Typography variant='h1'>{`${city}, ${state}`}</Typography>
-                  <Typography variant='h2'>{modalDate(day.dt)}</Typography>
-                </Grid>
-              </Grid>
+            <Grid item sm={12} md={6}>
+              {/* //* City, state, and day date & time */}
+              <Typography variant='h1'>{`${city}, ${state}`}</Typography>
+              <Typography variant='h2'>{modalDate(day.dt)}</Typography>
             </Grid>
             {/* //* Toggle Button that handles the temperature change */}
-            <Grid item xs={12} sm container>
+            <Grid item sm={12} md={2}>
               <ToggleButton
                 convertToFahrenheit={convertToFahrenheit}
                 setConvertToFahrenheit={setConvertToFahrenheit}
               />
             </Grid>
             {/* //* Close button */}
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction='column' spacing={2}>
-                <Grid item xs>
-                  <IconButton
-                    aria-label='close modal'
-                    color='primary'
-                    onClick={handleClose}
-                  >
-                    <CancelIcon fontSize='large' />
-                  </IconButton>
-                </Grid>
-              </Grid>
+            <Grid item sm={12} md={2}>
+              <IconButton
+                aria-label='close modal'
+                color='primary'
+                onClick={handleClose}
+              >
+                <CancelIcon fontSize='large' />
+              </IconButton>
             </Grid>
           </Grid>
 

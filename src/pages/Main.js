@@ -76,29 +76,17 @@ const Main = ({
   return (
     <div>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction='column' spacing={2}>
-            <Grid item xs>
-              {/* //* Weather icon */}
-              <img
-                // className={classes.img}
-                alt='weather icon'
-                src={imageURL(current.weather[0].icon, 4)}
-              />
-            </Grid>
-          </Grid>
+        {/* //* Weather icon */}
+        <Grid item sm={12} md={2}>
+          <img alt='weather icon' src={imageURL(current.weather[0].icon, 4)} />
         </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction='column' spacing={2}>
-            <Grid item xs>
-              {/* //* City, state, and current date & time */}
-              <Typography variant='h1'>{`${city}, ${state}`}</Typography>
-              <Typography variant='h2'>{localizeDate(current.dt)}</Typography>
-            </Grid>
-          </Grid>
+        {/* //* City, state, and current date & time */}
+        <Grid item sm={12} md={8}>
+          <Typography variant='h1'>{`${city}, ${state}`}</Typography>
+          <Typography variant='h2'>{localizeDate(current.dt)}</Typography>
         </Grid>
-        <Grid item xs={12} sm container>
-          {/* //* Toggle Button that handles the temperature change */}
+        {/* //* Toggle Button that handles the temperature change */}
+        <Grid item sm={12} md={2}>
           <ToggleButton
             convertToFahrenheit={convertToFahrenheit}
             setConvertToFahrenheit={setConvertToFahrenheit}
@@ -106,82 +94,75 @@ const Main = ({
         </Grid>
       </Grid>
 
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction='column' spacing={2}>
-            <Grid item xs>
-              {/* //* Sunrise time */}
-              <Typography variant='subtitle1'>Sunrise</Typography>
-              <Typography variant='subtitle2'>
-                {localizeTime(current.sunrise)}
-              </Typography>
-            </Grid>
-            <Grid item xs>
-              {/* //* Sunset time */}
-              <Typography variant='subtitle1'>Sunset</Typography>
-              <Typography variant='subtitle2'>
-                {localizeTime(current.sunset)}
-              </Typography>
-            </Grid>
+      <Grid container spacing={2} justify='center' alignItems='center'>
+        <Grid item sm={12} md={2} container direction='column'>
+          {/* //* Sunrise time */}
+          <Grid item xs>
+            <Typography variant='subtitle1'>Sunrise</Typography>
+            <Typography variant='subtitle2'>
+              {localizeTime(current.sunrise)}
+            </Typography>
+          </Grid>
+          {/* //* Sunset time */}
+          <Grid item xs>
+            <Typography variant='subtitle1'>Sunset</Typography>
+            <Typography variant='subtitle2'>
+              {localizeTime(current.sunset)}
+            </Typography>
           </Grid>
         </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction='column' spacing={2}>
-            <Grid item xs>
-              {/* //* Current temperature */}
-              <Typography variant='subtitle1'>Current Temp.</Typography>
-              <Typography variant='subtitle2'>
-                {convertTemp(current.temp)}
-              </Typography>
-            </Grid>
-            <Grid item xs>
-              {/* //* Feel temp */}
-              <Typography variant='subtitle1'>Feels Like</Typography>
-              <Typography variant='subtitle2'>
-                {convertTemp(current.feels_like)}
-              </Typography>
-            </Grid>
-            <Grid item xs>
-              {/* //* Weather description */}
-              <Typography variant='subtitle1'>Conditions</Typography>
-              <Typography variant='subtitle2'>
-                {current.weather[0].description}
-              </Typography>
-            </Grid>
+        <Grid item sm={12} md={2} container direction='column'>
+          {/* //* Current temperature */}
+          <Grid item xs>
+            <Typography variant='subtitle1'>Current Temp.</Typography>
+            <Typography variant='subtitle2'>
+              {convertTemp(current.temp)}
+            </Typography>
+          </Grid>
+          {/* //* Feel temp */}
+          <Grid item xs>
+            <Typography variant='subtitle1'>Feels Like</Typography>
+            <Typography variant='subtitle2'>
+              {convertTemp(current.feels_like)}
+            </Typography>
+          </Grid>
+          {/* //* Weather description */}
+          <Grid item xs>
+            <Typography variant='subtitle1'>Conditions</Typography>
+            <Typography variant='subtitle2'>
+              {current.weather[0].description}
+            </Typography>
           </Grid>
         </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction='column' spacing={2}>
-            <Grid item xs>
-              {/* //* Winds */}
-              <Typography variant='subtitle1'>Winds</Typography>
-              <Typography variant='subtitle2'>{`${
-                current.wind_deg
-              }° at ${convertSpeed(current.wind_speed)}`}</Typography>
-            </Grid>
-            <Grid item xs>
-              {/* //* Pressure */}
-              <Typography variant='subtitle1'>Pressure</Typography>
-              <Typography variant='subtitle2'>{`${current.pressure} hPa`}</Typography>
-            </Grid>
-            <Grid item xs>
-              {/* //* Humidity */}
-              <Typography variant='subtitle1'>Humidity</Typography>
-              <Typography variant='subtitle2'>{`${current.humidity}%`}</Typography>
-            </Grid>
+
+        <Grid item sm={12} md={2} container direction='column'>
+          <Grid item xs>
+            {/* //* Winds */}
+            <Typography variant='subtitle1'>Winds</Typography>
+            <Typography variant='subtitle2'>{`${
+              current.wind_deg
+            }° at ${convertSpeed(current.wind_speed)}`}</Typography>
+          </Grid>
+          <Grid item xs>
+            {/* //* Pressure */}
+            <Typography variant='subtitle1'>Pressure</Typography>
+            <Typography variant='subtitle2'>{`${current.pressure} hPa`}</Typography>
+          </Grid>
+          <Grid item xs>
+            {/* //* Humidity */}
+            <Typography variant='subtitle1'>Humidity</Typography>
+            <Typography variant='subtitle2'>{`${current.humidity}%`}</Typography>
           </Grid>
         </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction='column' spacing={2}>
-            <Grid item xs>
-              {/* //* Hourly chart */}
-              Hourly graph goes here
-            </Grid>
+        <Grid item sm={12} md={6} container>
+          <Grid item xs>
+            {/* //* Hourly chart */}
+            Hourly graph goes here
           </Grid>
         </Grid>
       </Grid>
 
-      <Grid container spacing={2}>
+      <Grid container spacing={2} justify='space-evenly'>
         {/* //* Map through the daily weather forecast and create 5 day components for the coming 5 days */}
         {daily.slice(1, 6).map((day) => (
           <Day
