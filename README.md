@@ -1,5 +1,20 @@
 # Project & Portfolio 5: Weather Application
 
+## Packages Used
+
+### [Material UI Icons](https://material-ui.com/components/material-icons/)
+	* Used in the button to close the modal view.
+  
+### [React Icons](https://react-icons.github.io/react-icons)
+	* Used for the sunrise and sunset icons.
+	* Great library of icons that can be used with any project.
+
+*** Not yet implemented ***
+~~ ### [visx](https://airbnb.io/visx/) ~~
+~~	* Provides components that allow you to create great visuals for low-level primitives. ~~
+~~	* Great for creating nice looking graphs. ~~
+~~	* Used in the `<HourlyGraph />` component. ~~
+
 ## APIs Used
 
 ### [Country State City API](https://countrystatecity.in)
