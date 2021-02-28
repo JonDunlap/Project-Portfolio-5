@@ -1,5 +1,7 @@
 # Project & Portfolio 5: Weather Application
 
+This is an application that will allow the user to choose a country, state, and city and will return the current weather as well as a 5 day forecast for the upcoming weather. The app starts off in the search form where a region, state, and city are retrieved from an external API. Once the user has selected a location another API call is made to get the latitude and longitude of the user's chosen location. That location is then sent to a final API to actually retrieve the weather data for the selected location.
+
 ## Packages Used
 
 ### [Material UI Icons](https://material-ui.com/components/material-icons/)
