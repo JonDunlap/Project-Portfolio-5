@@ -1,6 +1,6 @@
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Day from '../pages/Day';
+import Day from './Day';
 import ToggleButton from './ToggleButton';
 // import HourlyGraph from '../components/HourlyGraph';
 import { useState } from 'react';
