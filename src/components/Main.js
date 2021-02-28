@@ -72,7 +72,7 @@ const Main = ({
   };
   //* Take in the icon and return the image from the URL
   const imageURL = (icon, size) => {
-    return `http://openweathermap.org/img/wn/${icon}@${size}x.png`;
+    return `https://openweathermap.org/img/wn/${icon}@${size}x.png`;
   };
 
   //* Return statement
