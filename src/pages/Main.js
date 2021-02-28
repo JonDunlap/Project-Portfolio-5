@@ -2,6 +2,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Day from '../pages/Day';
 import ToggleButton from '../components/ToggleButton';
+// import HourlyGraph from '../components/HourlyGraph';
 import { useState } from 'react';
 
 const Main = ({
@@ -101,7 +102,7 @@ const Main = ({
       </Grid>
 
       <Grid container spacing={2} justify='space-around' alignItems='center'>
-        <Grid item sm={12} md={2} container spacing={2}>
+        <Grid item sm={12} md={4} container spacing={2}>
           {/* //* Sunrise time */}
           <Grid item xs={6}>
             <Typography variant='subtitle1'>Sunrise</Typography>
@@ -118,7 +119,7 @@ const Main = ({
           </Grid>
         </Grid>
 
-        <Grid item sm={12} md={2} container spacing={2} justify='space-around'>
+        <Grid item sm={12} md={8} container spacing={2} justify='space-around'>
           {/* //* Current temperature */}
           <Grid item xs={4}>
             <Typography variant='subtitle1'>Current Temp.</Typography>
@@ -159,12 +160,12 @@ const Main = ({
           </Grid>
         </Grid>
 
-        <Grid item sm={12} md={6} container spacing={2}>
-          {/* //* Hourly chart */}
-          <Grid item xs>
-            Hourly graph goes here
-          </Grid>
-        </Grid>
+        {/* <Grid item sm={12} md={6} container spacing={2}> */}
+        {/* //* Hourly chart */}
+        {/* <Grid item xs> */}
+        {/* <HourlyGraph hourly={hourly} /> */}
+        {/* </Grid> */}
+        {/* </Grid> */}
       </Grid>
 
       <Grid container spacing={2} justify='space-evenly'>

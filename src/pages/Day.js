@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CancelIcon from '@material-ui/icons/Cancel';
 import Modal from '@material-ui/core/Modal';
 import ToggleButton from '../components/ToggleButton';
+// import HourlyGraph from '../components/HourlyGraph';
 import { makeStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
 
@@ -239,18 +240,18 @@ const Day = ({
               </Grid>
             </Grid>
 
-            <Grid
+            {/* <Grid
               item
               container
               spacing={2}
               justify='center'
               alignItems='center'
-            >
-              {/* //* Hourly chart */}
-              <Grid item xs>
-                Hourly graph goes here
-              </Grid>
-            </Grid>
+            > */}
+            {/* //* Hourly chart */}
+            {/* <Grid item xs> */}
+            {/* <HourlyGraph dayTemps={day.temp} /> */}
+            {/* </Grid> */}
+            {/* </Grid> */}
           </Grid>
         </Paper>
       </Modal>
