@@ -6,8 +6,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
-// Styles used for customizing the material-ui components
+//* Styles used for customizing the material-ui components
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(2),
@@ -16,9 +17,13 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  paper: {
+    margin: theme.spacing(2),
+    padding: theme.spacing(5),
+  },
 }));
 
-// Search component with props
+//* Search component with props
 const Search = ({
   region,
   state,
@@ -31,15 +36,16 @@ const Search = ({
   stateList,
   cityList,
 }) => {
-  // Styling for material elements
+  // Variables
+  //* Styling for material elements
   const classes = useStyles();
-  // Variables used to enable/disable inputs/buttons
+  //* Variables used to enable/disable inputs/buttons
   let stateDisabled = !stateList,
     cityDisabled = !cityList,
     btnDisabled = !city;
 
   return (
-    <Paper elevation={3}>
+    <Paper elevation={3} className={classes.paper}>
       <form onSubmit={submitForm}>
         <Grid
           container
@@ -48,6 +54,11 @@ const Search = ({
           align='center'
           width='auto'
         >
+          <Grid item sm={12}>
+            <Typography variant='h3' component='h2'>
+              Weather Search
+            </Typography>
+          </Grid>
           <Grid item sm={12} md={6} lg={3}>
             <FormControl className={classes.formControl}>
               <InputLabel id='region-label'>Region</InputLabel>
@@ -59,7 +70,7 @@ const Search = ({
                 autoWidth
                 className={classes.selectEmpty}
               >
-                {/* Map through the regions & show them as select inputs */}
+                {/* //* Map through the regions & show them as select inputs */}
                 {regionList.map((region) => (
                   <MenuItem key={region.id} value={region.iso2}>
                     {region.name}
@@ -80,7 +91,7 @@ const Search = ({
                 autoWidth
                 className={classes.selectEmpty}
               >
-                {/* Map through the states */}
+                {/* //* Map through the states */}
                 {stateList
                   ? stateList.map((state) => (
                       <MenuItem key={state.id} value={state.iso2}>
@@ -103,7 +114,7 @@ const Search = ({
                 autoWidth
                 className={classes.selectEmpty}
               >
-                {/* Map through the cities */}
+                {/* //* Map through the cities */}
                 {cityList
                   ? cityList.map((city) => (
                       <MenuItem key={city.id} value={city.name}>
