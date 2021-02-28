@@ -13,7 +13,6 @@ import { useState } from 'react';
 const useStyles = makeStyles((theme) => ({
   paper: {
     width: 250,
-    // margin: 10,
     padding: theme.spacing(2),
   },
   modal: {
@@ -46,15 +45,15 @@ const Day = ({
   const classes = useStyles();
 
   //* Functions
-  // function used to open the modal
+  //* function used to open the modal
   const handleOpen = () => {
     setOpen(true);
   };
-  // Function used to close the modal
+  //* Function used to close the modal
   const handleClose = () => {
     setOpen(false);
   };
-  // Take a datetime object and convert it to a localized date string for use in the modal view
+  //* Take a datetime object and convert it to a localized date string for use in the modal view
   const modalDate = (date) => {
     return new Date(date * 1000).toLocaleDateString('en-US', {
       weekday: 'long',
@@ -119,7 +118,6 @@ const Day = ({
       </ButtonBase>
 
       {/* //* Expanded modal view of selected day */}
-      {/* // TODO - set the size and position of expanded modal */}
       <Modal
         open={open}
         onClose={handleClose}
