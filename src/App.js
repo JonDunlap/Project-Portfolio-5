@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Main from './pages/Main';
-import Search from './pages/Search';
+import Main from './components/Main';
+import Search from './components/Search';
 
 function App() {
   //* State variables used in the App component

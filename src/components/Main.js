@@ -1,7 +1,7 @@
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Day from '../pages/Day';
-import ToggleButton from '../components/ToggleButton';
+import ToggleButton from './ToggleButton';
 // import HourlyGraph from '../components/HourlyGraph';
 import { useState } from 'react';
 import { WiSunset as Sunset, WiSunrise as Sunrise } from 'react-icons/wi';
