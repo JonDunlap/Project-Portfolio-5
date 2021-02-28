@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 const ToggleButton = ({ convertToFahrenheit, setConvertToFahrenheit }) => {
-  // Toggle the convert variable by switching the current state of that variable
+  //* Toggle the convert variable by switching the current state of that variable
   const toggleConversion = () => {
     setConvertToFahrenheit(!convertToFahrenheit);
   };
