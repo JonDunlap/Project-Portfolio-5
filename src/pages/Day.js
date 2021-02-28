@@ -37,6 +37,8 @@ const Day = ({
   localizeShortDate,
   localizeTime,
   imageURL,
+  Sunset,
+  Sunrise,
 }) => {
   //* State variables
   // State variable to open & close the modal window
@@ -184,6 +186,7 @@ const Day = ({
               <Grid item sm={12} container spacing={2}>
                 {/* //* Sunrise time */}
                 <Grid item xs>
+                  <Sunrise size='3em' title='sunrise icon' />
                   <Typography variant='subtitle1'>Sunrise</Typography>
                   <Typography variant='subtitle2'>
                     {localizeTime(day.sunrise)}
@@ -191,6 +194,7 @@ const Day = ({
                 </Grid>
                 {/* //* Sunset time */}
                 <Grid item xs>
+                  <Sunset size='3em' title='sunset icon' />
                   <Typography variant='subtitle1'>Sunset</Typography>
                   <Typography variant='subtitle2'>
                     {localizeTime(day.sunset)}

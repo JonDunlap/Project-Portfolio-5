@@ -4,6 +4,7 @@ import Day from '../pages/Day';
 import ToggleButton from '../components/ToggleButton';
 // import HourlyGraph from '../components/HourlyGraph';
 import { useState } from 'react';
+import { WiSunset as Sunset, WiSunrise as Sunrise } from 'react-icons/wi';
 
 const Main = ({
   //* Props
@@ -105,6 +106,7 @@ const Main = ({
         <Grid item sm={12} md={4} container spacing={2}>
           {/* //* Sunrise time */}
           <Grid item xs={6}>
+            <Sunrise size='3em' title='sunrise icon' />
             <Typography variant='subtitle1'>Sunrise</Typography>
             <Typography variant='subtitle2'>
               {localizeTime(current.sunrise)}
@@ -112,6 +114,7 @@ const Main = ({
           </Grid>
           {/* //* Sunset time */}
           <Grid item xs={6}>
+            <Sunset size='3em' title='sunset icon' />
             <Typography variant='subtitle1'>Sunset</Typography>
             <Typography variant='subtitle2'>
               {localizeTime(current.sunset)}
@@ -185,6 +188,8 @@ const Main = ({
             localizeShortDate={localizeShortDate}
             localizeTime={localizeTime}
             imageURL={imageURL}
+            Sunset={Sunset}
+            Sunrise={Sunrise}
           />
         ))}
       </Grid>
