@@ -160,6 +160,7 @@ const Main = ({
           </Grid>
         </Grid>
 
+        {/* // TODO - add this component in once it is complete */}
         {/* <Grid item sm={12} md={6} container spacing={2}> */}
         {/* //* Hourly chart */}
         {/* <Grid item xs> */}
