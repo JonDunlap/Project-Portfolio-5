@@ -1,4 +1,4 @@
-import { AxisLeft, AxisBottom } from '@visx/axis';
+/* import { AxisLeft, AxisBottom } from '@visx/axis';
 import { GradientOrangeRed } from '@visx/gradient';
 import { Group } from '@visx/group';
 import { scaleTime, scaleLinear } from '@visx/scale';
@@ -50,3 +50,4 @@ const HourlyGraph = ({ hourly, dayTemps }) => {
 };
 
 export default HourlyGraph;
+ */
