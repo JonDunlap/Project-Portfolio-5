@@ -13,7 +13,7 @@ import { useState } from 'react';
 const useStyles = makeStyles((theme) => ({
   paper: {
     width: 250,
-    margin: 10,
+    // margin: 10,
     padding: theme.spacing(2),
   },
   modal: {
@@ -67,11 +67,11 @@ const Day = ({
 
   //* Day component return
   return (
-    <div>
+    <Grid item>
       {/* //* Wrap the day view in a button that will open up the modal */}
       <ButtonBase focusRipple onClick={handleOpen}>
         <Paper className={classes.paper}>
-          <Grid container spacing={2} direction='column'>
+          <Grid item container spacing={2} direction='column'>
             {/* //* Weather icon */}
             <Grid item xs>
               <img alt='weather icon' src={imageURL(day.weather[0].icon, 2)} />
@@ -127,118 +127,136 @@ const Day = ({
         aria-describedby='modal-description'
       >
         <Paper className={classes.modal}>
-          {/* // TODO - provide aria labels and descriptions */}
-          <Grid container spacing={2}>
-            {/* //* Weather icon */}
-            <Grid item sm={12} md={2}>
-              {/* // TODO - pass the image in as a variable to prevent loading on each interaction */}
-              <img alt='weather icon' src={imageURL(day.weather[0].icon, 4)} />
+          <Grid container spacing={2} justify='center' alignItems='center'>
+            <Grid
+              item
+              container
+              spacing={2}
+              justify='center'
+              alignItems='center'
+            >
+              <Grid item container spacing={2}>
+                {/* //* Weather icon */}
+                <Grid item sm={12} md={2}>
+                  {/* // TODO - pass the image in as a variable to prevent loading on each interaction */}
+                  <img
+                    alt='weather icon'
+                    src={imageURL(day.weather[0].icon, 4)}
+                  />
+                </Grid>
+                {/* //* Header */}
+                <Grid item sm={12} md={6}>
+                  {/* //* City, state, and day date & time */}
+                  <Typography
+                    variant='h1'
+                    id='modal-title'
+                  >{`${city}, ${state}`}</Typography>
+                  <Typography variant='h2' id='modal-description'>
+                    {modalDate(day.dt)}
+                  </Typography>
+                </Grid>
+                {/* //* Toggle Button that handles the temperature change */}
+                <Grid item sm={12} md={2}>
+                  <ToggleButton
+                    convertToFahrenheit={convertToFahrenheit}
+                    setConvertToFahrenheit={setConvertToFahrenheit}
+                  />
+                </Grid>
+                {/* //* Close button */}
+                <Grid item sm={12} md={2}>
+                  <IconButton
+                    aria-label='close modal'
+                    color='primary'
+                    onClick={handleClose}
+                  >
+                    <CancelIcon fontSize='large' />
+                  </IconButton>
+                </Grid>
+              </Grid>
             </Grid>
-            {/* //* Header */}
-            <Grid item sm={12} md={6}>
-              {/* //* City, state, and day date & time */}
-              <Typography variant='h1'>{`${city}, ${state}`}</Typography>
-              <Typography variant='h2'>{modalDate(day.dt)}</Typography>
-            </Grid>
-            {/* //* Toggle Button that handles the temperature change */}
-            <Grid item sm={12} md={2}>
-              <ToggleButton
-                convertToFahrenheit={convertToFahrenheit}
-                setConvertToFahrenheit={setConvertToFahrenheit}
-              />
-            </Grid>
-            {/* //* Close button */}
-            <Grid item sm={12} md={2}>
-              <IconButton
-                aria-label='close modal'
-                color='primary'
-                onClick={handleClose}
-              >
-                <CancelIcon fontSize='large' />
-              </IconButton>
-            </Grid>
-          </Grid>
 
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction='column' spacing={2}>
+            <Grid
+              item
+              container
+              spacing={2}
+              justify='center'
+              alignItems='center'
+            >
+              <Grid item sm={12} container spacing={2}>
+                {/* //* Sunrise time */}
                 <Grid item xs>
-                  {/* //* Sunrise time */}
                   <Typography variant='subtitle1'>Sunrise</Typography>
                   <Typography variant='subtitle2'>
                     {localizeTime(day.sunrise)}
                   </Typography>
                 </Grid>
+                {/* //* Sunset time */}
                 <Grid item xs>
-                  {/* //* Sunset time */}
                   <Typography variant='subtitle1'>Sunset</Typography>
                   <Typography variant='subtitle2'>
                     {localizeTime(day.sunset)}
                   </Typography>
                 </Grid>
               </Grid>
-            </Grid>
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction='column' spacing={2}>
-                <Grid item xs>
-                  {/* //* Highs */}
+
+              <Grid item sm={12} container spacing={2}>
+                {/* //* Highs */}
+                <Grid item xs={4}>
                   <Typography variant='subtitle1'>High</Typography>
                   <Typography variant='subtitle2'>
                     {convertTemp(day.temp.max)}
                   </Typography>
                 </Grid>
-                <Grid item xs>
-                  {/* //* Lows */}
+                {/* //* Lows */}
+                <Grid item xs={4}>
                   <Typography variant='subtitle1'>Low</Typography>
                   <Typography variant='subtitle2'>
                     {convertTemp(day.temp.min)}
                   </Typography>
                 </Grid>
-                <Grid item xs>
-                  {/* //* Weather description */}
+                {/* //* Weather description */}
+                <Grid item xs={4}>
                   <Typography variant='subtitle1'>Conditions</Typography>
                   <Typography variant='subtitle2'>
                     {day.weather[0].description}
                   </Typography>
                 </Grid>
-              </Grid>
-            </Grid>
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction='column' spacing={2}>
-                <Grid item xs>
-                  {/* //* Winds */}
+                {/* //* Winds */}
+                <Grid item xs={4}>
                   <Typography variant='subtitle1'>Winds</Typography>
                   <Typography variant='subtitle2'>{`${
                     day.wind_deg
                   }° at ${convertSpeed(day.wind_speed)}`}</Typography>
                 </Grid>
-                <Grid item xs>
-                  {/* //* Pressure */}
+                {/* //* Pressure */}
+                <Grid item xs={4}>
                   <Typography variant='subtitle1'>Pressure</Typography>
                   <Typography variant='subtitle2'>{`${day.pressure} hPa`}</Typography>
                 </Grid>
-                <Grid item xs>
-                  {/* //* Humidity */}
+                {/* //* Humidity */}
+                <Grid item xs={4}>
                   <Typography variant='subtitle1'>Humidity</Typography>
                   <Typography variant='subtitle2'>{`${day.humidity}%`}</Typography>
                 </Grid>
               </Grid>
             </Grid>
-          </Grid>
 
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction='column' spacing={2}>
-                <Grid item xs>
-                  {/* //* Hourly chart */}
-                  Hourly graph goes here
-                </Grid>
+            <Grid
+              item
+              container
+              spacing={2}
+              justify='center'
+              alignItems='center'
+            >
+              {/* //* Hourly chart */}
+              <Grid item xs>
+                Hourly graph goes here
               </Grid>
             </Grid>
           </Grid>
         </Paper>
       </Modal>
-    </div>
+    </Grid>
   );
 };
 
