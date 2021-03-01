@@ -54,6 +54,18 @@ const Search = ({ location, setLocation, setCityState, setWeather }) => {
     cityDisabled = !cityList,
     btnDisabled = !city;
 
+  //* Function used to sort the country, state, city lists before being saved to the state
+  const sortList = (list) => {
+    return list.sort((a, b) => {
+      // Change the names to uppercase so they can be compared
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+
+      // Return statement that compares if a < b / a > b / returns 0 if they are the same this ensures they are sorted properly
+      return nameA < nameB ? -1 : nameA > nameB ? 1 : 0;
+    });
+  };
+
   // useEffect functions
   //* Fetch the region list on initial load of the App component
   useEffect(() => {
@@ -63,6 +75,8 @@ const Search = ({ location, setLocation, setCityState, setWeather }) => {
         requestOptions
       )
         .then((response) => response.json())
+        //* Send the list to be sorted before saving it to the state
+        .then((list) => sortList(list))
         .then((result) => setRegionList(result))
         .catch((error) => console.log('error', error));
     };
@@ -77,6 +91,8 @@ const Search = ({ location, setLocation, setCityState, setWeather }) => {
         requestOptions
       )
         .then((response) => response.json())
+        //* Send the list to be sorted before saving it to the state
+        .then((list) => sortList(list))
         .then((result) => setStateList(result))
         .catch((error) => console.log('error', error));
     };
@@ -93,6 +109,8 @@ const Search = ({ location, setLocation, setCityState, setWeather }) => {
         requestOptions
       )
         .then((response) => response.json())
+        //* Send the list to be sorted before saving it to the state
+        .then((list) => sortList(list))
         .then((result) => setCityList(result))
         .catch((error) => console.log('error', error));
     };
@@ -189,20 +207,11 @@ const Search = ({ location, setLocation, setCityState, setWeather }) => {
                     className={classes.selectEmpty}
                   >
                     {/* //* Map through the regions & show them as select inputs */}
-                    {regionList
-                      .sort((a, b) => {
-                        // Change the names to uppercase so they can be compared
-                        const nameA = a.name.toUpperCase();
-                        const nameB = b.name.toUpperCase();
-
-                        // Return statement that compares if a < b / a > b / returns 0 if they are the same this ensures they are sorted properly
-                        return nameA < nameB ? -1 : nameA > nameB ? 1 : 0;
-                      })
-                      .map((region) => (
-                        <MenuItem key={region.id} value={region.iso2}>
-                          {region.name}
-                        </MenuItem>
-                      ))}
+                    {regionList.map((region) => (
+                      <MenuItem key={region.id} value={region.iso2}>
+                        {region.name}
+                      </MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
               </Grid>
@@ -220,20 +229,11 @@ const Search = ({ location, setLocation, setCityState, setWeather }) => {
                   >
                     {/* //* Map through the states */}
                     {stateList
-                      ? stateList
-                          .sort((a, b) => {
-                            // Change the names to uppercase so they can be compared
-                            const nameA = a.name.toUpperCase();
-                            const nameB = b.name.toUpperCase();
-
-                            // Return statement that compares if a < b / a > b / returns 0 if they are the same this ensures they are sorted properly
-                            return nameA < nameB ? -1 : nameA > nameB ? 1 : 0;
-                          })
-                          .map((state) => (
-                            <MenuItem key={state.id} value={state.iso2}>
-                              {state.name}
-                            </MenuItem>
-                          ))
+                      ? stateList.map((state) => (
+                          <MenuItem key={state.id} value={state.iso2}>
+                            {state.name}
+                          </MenuItem>
+                        ))
                       : ''}
                   </Select>
                 </FormControl>
@@ -252,20 +252,11 @@ const Search = ({ location, setLocation, setCityState, setWeather }) => {
                   >
                     {/* //* Map through the cities */}
                     {cityList
-                      ? cityList
-                          .sort((a, b) => {
-                            // Change the names to uppercase so they can be compared
-                            const nameA = a.name.toUpperCase();
-                            const nameB = b.name.toUpperCase();
-
-                            // Return statement that compares if a < b / a > b / returns 0 if they are the same this ensures they are sorted properly
-                            return nameA < nameB ? -1 : nameA > nameB ? 1 : 0;
-                          })
-                          .map((city) => (
-                            <MenuItem key={city.id} value={city.name}>
-                              {city.name}
-                            </MenuItem>
-                          ))
+                      ? cityList.map((city) => (
+                          <MenuItem key={city.id} value={city.name}>
+                            {city.name}
+                          </MenuItem>
+                        ))
                       : ''}
                   </Select>
                 </FormControl>
